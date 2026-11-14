@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Designed to Exist makes animated portfolio websites and GitHub profiles. Day 03: the retro terminal edition.">
+<link rel="icon" type="image/png" href="/favicon.png">
+<title>dte-os · Designed to Exist</title>
+<link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+<style>
+:root{--fg:#ffb000;--dim:#9a6a00;--bg:#0d0700;--hi:#ffe9b8;--hr:0deg;color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box;margin:0}
+html,body{height:100%;background:#0b0b0a}
+body{font-family:'VT323','Courier New',ui-monospace,monospace;color:var(--fg);padding:max(10px,env(safe-area-inset-top,0px)) 10px 10px;display:flex}
+.bez{flex:1;min-width:0;border-radius:26px;padding:10px;background:linear-gradient(145deg,#2a2926,#121211);box-shadow:inset 0 0 0 2px #3a3935,0 0 40px #000;display:flex}
+.scr{flex:1;min-width:0;position:relative;border-radius:18px;background:radial-gradient(ellipse at center,color-mix(in srgb,var(--fg) 9%,var(--bg)),var(--bg) 75%);overflow:hidden;box-shadow:inset 0 0 90px rgba(0,0,0,.85),inset 0 0 0 2px #000;display:flex;flex-direction:column;animation:on 1.3s cubic-bezier(.2,.9,.2,1),flk 6s steps(1) 1.3s infinite}
+@keyframes flk{0%,96%,100%{opacity:1}97%{opacity:.93}98%{opacity:1}99%{opacity:.96}}
+@keyframes on{0%{transform:scale(0,.004);filter:brightness(6)}35%{transform:scale(1,.004);filter:brightness(6)}75%{transform:scale(1,1);filter:brightness(2.2)}100%{transform:none;filter:none}}
+.scr:before{content:"";position:absolute;left:0;right:0;height:14%;top:-16%;background:linear-gradient(transparent,color-mix(in srgb,var(--fg) 10%,transparent),transparent);pointer-events:none;z-index:2;animation:swp 7s linear infinite}@keyframes swp{to{top:112%}}
+.bez{position:relative}.bez:after{content:"";position:absolute;right:30px;bottom:2px;width:6px;height:6px;border-radius:50%;background:var(--fg);box-shadow:0 0 8px var(--fg);animation:bl 2.4s steps(1) infinite}
+.scr:after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at 30% 20%,rgba(255,255,255,.05),transparent 55%)}
+#out{flex:1;overflow-y:auto;padding:22px 24px 8px;font-size:clamp(19px,2.6vw,25px);line-height:1.12;text-shadow:0 0 6px var(--fg),0 0 16px color-mix(in srgb,var(--fg) 45%,transparent);scrollbar-width:thin;scrollbar-color:var(--dim) transparent;white-space:pre-wrap;word-break:break-word}
+#out div{min-height:1em}
+.d{color:var(--dim);text-shadow:none}.h{color:var(--hi)}.inv{background:var(--fg);color:var(--bg);text-shadow:none;padding:0 6px}
+#out a,#out .cmd{color:var(--hi);text-decoration:underline;text-decoration-style:dotted;cursor:pointer}
+#out a:hover,#out .cmd:hover{background:var(--fg);color:var(--bg);text-shadow:none}
+.fr{position:relative;width:min(100%,640px);aspect-ratio:16/10;border:1px solid var(--fg);margin:8px 0;overflow:hidden;background:#000}
+.fr iframe{position:absolute;left:0;top:0;border:0;transform-origin:0 0;pointer-events:none;filter:grayscale(1) sepia(1) hue-rotate(var(--hr,0deg)) saturate(2.4) contrast(1.05);background:#000}
+#pr{display:flex;align-items:center;gap:10px;padding:6px 24px 10px;font-size:clamp(19px,2.6vw,25px);text-shadow:0 0 6px var(--fg)}
+#pr label{white-space:nowrap}
+#in{flex:1;min-width:0;background:none;border:0;outline:0;color:var(--hi);font:inherit;text-shadow:inherit;caret-color:transparent}
+.cur{display:inline-block;width:.6em;height:1em;background:var(--fg);vertical-align:-.12em;animation:bl 1s steps(1) infinite;box-shadow:0 0 8px var(--fg);margin-left:-8px}
+@keyframes bl{50%{opacity:0}}
+.chips{display:flex;gap:8px;flex-wrap:wrap;padding:0 24px 14px}
+.chips button{font:inherit;font-size:18px;color:var(--fg);background:none;border:1px solid var(--dim);padding:0 10px;cursor:pointer;text-shadow:0 0 6px var(--fg)}
+.chips button:hover,.chips button:active{background:var(--fg);color:var(--bg);text-shadow:none}
+#mx{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:0;transition:opacity .4s steps(4)}#mx.on{opacity:.85}
+#ld{position:absolute;inset:0;z-index:5;background:var(--bg);transition:opacity .8s steps(6)}#ld.out{opacity:0;pointer-events:none}#lr{position:absolute;inset:0;width:100%;height:100%}
+.lt{position:absolute;inset:0;display:grid;place-content:center;text-align:center;padding:0 12px;font-size:clamp(28px,6vw,64px);letter-spacing:.1em;color:var(--hi);text-shadow:0 0 12px var(--fg),0 0 30px var(--fg);background:radial-gradient(ellipse at center,var(--bg) 22%,transparent 68%)}.lt span{font-size:clamp(18px,2.4vw,24px);color:var(--fg);margin-top:12px;letter-spacing:.35em}
+@media(prefers-reduced-motion:reduce){*{animation:none!important}}
+</style>
+</head>
+<body>
+<div class="bez"><div class="scr" id="scr">
+<div id="out" role="log" aria-live="polite"></div>
+<canvas id="mx"></canvas>
+<div id="ld" role="status" aria-label="Loading"><canvas id="lr"></canvas><div class="lt"><b id="lw">&nbsp;</b><span id="lp">LOADING 0%</span></div></div>
+<div class="chips" id="chips"></div>
+<div id="pr"><label for="in">guest@dte:~$</label><input id="in" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="terminal input"><span class="cur" id="cur"></span></div>
+</div></div>
+<script>
+(function(){
+var $=function(i){return document.getElementById(i)},out=$('out'),inp=$('in'),busy=false,skip=false,hist=[],hi=0;
+var ART=String.raw`  ____  _____ _____
+ |  _ \|_   _| ____|
+ | | | | | | |  _|
+ | |_| | | | | |___
+ |____/  |_| |_____|`;
+var sleep=function(ms){return new Promise(function(r){setTimeout(r,ms)})};
+function scr(){out.scrollTop=out.scrollHeight}
+var ac=null,snd=false,bn=0;
+function blip(){if(!snd||!ac)return;var o=ac.createOscillator(),g=ac.createGain();o.type='square';o.frequency.value=650+Math.random()*250;g.gain.value=.02;g.gain.exponentialRampToValueAtTime(.0001,ac.currentTime+.04);o.connect(g);g.connect(ac.destination);o.start();o.stop(ac.currentTime+.05)}
+function reveal(el,sp){return new Promise(function(res){var tn=[],w=document.createTreeWalker(el,4),n;while(n=w.nextNode())tn.push([n,n.data]);tn.forEach(function(t){t[0].data=''});var i=0,j=0;
+ (function s(){if(skip){tn.forEach(function(t){t[0].data=t[1]});scr();return res()}var c=3;while(c--&&i<tn.length){var t=tn[i];t[0].data=t[1].slice(0,++j);if(j>=t[1].length){i++;j=0}}scr();if(bn++%4===0)blip();i<tn.length?setTimeout(s,sp):res()})()})}
+async function say(lines,sp){busy=true;skip=false;for(var k=0;k<lines.length;k++){var d=document.createElement('div'),l=lines[k];d.innerHTML=l;out.appendChild(d);if(!skip)await reveal(d,sp||9);scr()}busy=false;inp.focus({preventScroll:true})}
+var $c=function(c,t){return '<span class="cmd" data-c="'+c+'">'+(t||c)+'</span>'};
+var SITES=[['Marlo Reyes','https://designed-to-exist.netlify.app/','Portfolio · scroll dive · sound','A deep-sea illustration portfolio. Scroll down and the light fades into the dark.'],
+['The Night Market of Lost Things','https://night-market-dte.vercel.app/','Experience · walkable · sound','Wander a lantern-lit night market on foot. Scroll, swipe or press W and S.'],
+['Museum of Small Weather','https://small-weather-mu.vercel.app/','Interactive · museum · sound','Tiny storms in glass jars. Wipe the fog, shake a jar, bottle a squall.'],
+['Morrow & Moss','https://morrow-and-moss.netlify.app','Studio · services · journal','A botanical studio’s home on the web, with an archive that turns as you scroll.']];
+var FILES={'about.txt':'about','services.txt':'services','process.txt':'process','contact.txt':'contact'};
+var C={
+help:function(){return ['<span class="h">available commands</span>','  '+$c('about')+'      who we are','  '+$c('services')+'   what we make','  '+$c('work')+'       sites we’ve made (then '+$c('open 1','open &lt;n&gt;')+' to preview)','  '+$c('process')+'    how it works','  '+$c('contact')+'    say hello','  '+$c('neofetch')+'   system info','  '+$c('theme')+'      green | amber | ice','  '+$c('matrix')+'     you know what this does','  ls, cat, whoami, date, echo, history, clear','  '+$c('hack')+' · '+$c('fortune')+' · '+$c('pet')+' · '+$c('sound on')+'  <span class="d">(extras)</span>','<span class="d">tip: Tab completes, ↑ recalls history. Something is hidden in here.</span>']},
+about:function(){return ['<span class="h">// about.txt</span>','DTE is a tiny studio that compiles ideas into websites.','We build animated portfolio sites and GitHub profiles','for people who deserve more than a template.','','Every build is written by hand, one person at a time.','<span class="inv">status: visible, remembered, existing</span>']},
+services:function(){return ['<span class="h">// services.txt</span>','[1] living_portfolios()','    Sites that move, react and tell your story your way.','[2] github_glowup()','    A profile README with animated heroes that makes people stop and star.','[3] handover()','    You get the source files and publish on your own domain.','    No lock-in, no subscription.']},
+work:function(){var o=['<span class="h">// ls work/</span>'];SITES.forEach(function(s,i){o.push('['+(i+1)+'] '+$c('open '+(i+1),s[0])+'  <span class="d">'+s[2]+'</span>')});o.push('<span class="d">type open &lt;n&gt; for a live preview</span>');return o},
+process:function(){return ['<span class="h">// process.txt</span>','1. hello     Drop us a DM on Instagram and tell us who you are.','2. sketch    One bold idea, drawn just for you.','3. compile   Animated, responsive, tuned to the last pixel.','4. deploy    The files are yours. Publish them on your own domain.']},
+contact:function(){return ['<span class="h">// contact.txt</span>','Instagram  <a href="https://www.instagram.com/designed_toexist" target="_blank" rel="noopener">@designed_toexist</a>','GitHub     <a href="https://github.com/designedtoexist" target="_blank" rel="noopener">github.com/designedtoexist</a>','<span class="d">Got an idea? Send a DM and let’s make it exist.</span>']},
+neofetch:function(){return ['<span class="h">'+ART+'</span>','guest@dte','---------','OS      DTE-OS 3.0 (phosphor edition)','Host    designed-to-exist','Shell   dte-sh','Uptime  since 2026','Theme   '+(document.documentElement.dataset.t||'amber'),'Motto   be seen. be remembered. exist.']},
+whoami:function(){return ['guest — but you could be our next portfolio.']},
+date:function(){return [new Date().toString()]},
+ls:function(a){var o=['about.txt  services.txt  process.txt  contact.txt  work/'];if(/a/.test(a))o.push('.secret');return o},
+cat:function(a){if(a==='.secret')return ['<span class="inv">you found it</span>','The best portfolios are the ones that feel a little bit alive.','Type '+$c('sudo hire-us')+' for a reward.'];var f=FILES[a];return f?C[f]():['cat: '+(a||'?')+': No such file']},
+echo:function(a){return [a.replace(/</g,'&lt;')]},
+sudo:function(a){return a==='hire-us'?['[sudo] password for guest: ********','<span class="inv">ACCESS GRANTED</span>','Great taste. Opening a line to the studio…','<a href="https://www.instagram.com/designed_toexist" target="_blank" rel="noopener">→ instagram.com/designed_toexist</a>']:['guest is not in the sudoers file. This incident will be reported.']},
+theme:function(a){var T={green:['#39ff7a','#1f9a4b','#020a05','#d6ffe4','95deg'],amber:['#ffb000','#9a6a00','#0d0700','#ffe9b8','0deg'],ice:['#7fe9ff','#2f8ba3','#020a10','#e0faff','150deg']};if(!a){var o=['amber','green','ice'];a=o[(o.indexOf(document.documentElement.dataset.t||'amber')+1)%3]}if(!T[a])return ['usage: theme green | amber | ice'];var r=document.documentElement.style,t=T[a];r.setProperty('--fg',t[0]);r.setProperty('--dim',t[1]);r.setProperty('--bg',t[2]);r.setProperty('--hi',t[3]);r.setProperty('--hr',t[4]);document.documentElement.dataset.t=a;return ['phosphor set to '+a+'.']},
+matrix:function(){rain();return ['wake up, guest…']},
+open:function(a){var s=SITES[(+a||0)-1];if(!s)return ['usage: open 1-4'];var id='f'+Date.now();setTimeout(function(){var h=document.getElementById(id);if(h){var f=document.createElement('iframe');f.title=s[0]+' live preview';f.tabIndex=-1;f.setAttribute('referrerpolicy','no-referrer');f.setAttribute('sandbox','allow-scripts allow-same-origin');var k=h.clientWidth/1280;f.style.cssText='width:1280px;height:'+(h.clientHeight/k)+'px;transform:scale('+k+')';f.src=s[1];h.appendChild(f)}},60);
+ return ['<span class="h">'+s[0]+'</span>  <span class="d">'+s[2]+'</span>',s[3],'<div class="fr" id="'+id+'"></div>','<a href="'+s[1]+'" target="_blank" rel="noopener">→ visit site</a>']},
+clear:function(){out.innerHTML='';return []},
+hack:function(){return ['bypassing firewall ........ [##########]','decrypting portfolio ....... [##########]','choosing the prettiest colors [##########]','<span class="inv">ACCESS GRANTED</span>','...just kidding. We only hack websites together. Try '+$c('contact')]},
+fortune:function(){var q=['A smooth gradient is worth a thousand templates.','You will soon scroll past something beautiful.','The best bug is the one that looks like a feature.','Today’s lucky color: #39ff7a.','Someone out there needs your portfolio. Let’s make it.'];return ['“'+q[Math.random()*q.length|0]+'”']},
+pet:function(){return ['  =^..^=   meow.','  the studio cat approves of your curiosity.']},
+history:function(){return hist.length?hist.map(function(h,i){return ' '+(i+1)+'  '+h.replace(/</g,'&lt;')}):['(empty)']},
+sound:function(a){snd=a?a!=='off':!snd;if(snd&&!ac){try{ac=new (window.AudioContext||window.webkitAudioContext)()}catch(e){}}return ['key sounds: '+(snd?'on':'off')+'  '+$c(snd?'sound off':'sound on')]}
+};
+function run(v){v=v.trim();var p=v.split(/\s+/),c=p[0].toLowerCase(),a=p.slice(1).join(' ');
+ if(!c)return Promise.resolve();var d=document.createElement('div');d.innerHTML='<span class="d">guest@dte:~$</span> ';d.appendChild(document.createTextNode(v));out.appendChild(d);
+ if(c==='clear'){C.clear();return Promise.resolve()}
+ if(c==='sudo'&&a)a=a.trim();
+ if(c==='ls'&&a==='-la')a='-a';
+ var f=C[c];if(!f||c==='clear')return say(['dte-sh: command not found: '+c.replace(/</g,'&lt;'),'<span class="d">try '+'</span>'+$c('help')]);
+ return say(f(a).concat(['']))}
+inp.addEventListener('keydown',function(e){
+ blip();if(busy){skip=true;if(e.key==='Enter')e.preventDefault();return}
+ if(e.key==='Enter'){var v=inp.value;inp.value='';if(v.trim()){hist.push(v);hi=hist.length}run(v)}
+ else if(e.key==='ArrowUp'){e.preventDefault();if(hi>0)inp.value=hist[--hi]}
+ else if(e.key==='ArrowDown'){e.preventDefault();inp.value=hi<hist.length-1?hist[++hi]:(hi=hist.length,'')}
+ else if(e.key==='Tab'){e.preventDefault();var m=Object.keys(C).filter(function(k){return k.indexOf(inp.value)===0&&inp.value});if(m.length===1)inp.value=m[0]}});
+document.addEventListener('keydown',function(){if(busy)skip=true});
+$('scr').addEventListener('click',function(e){var c=e.target.closest('.cmd');if(c&&!busy){run(c.dataset.c)}else if(!window.getSelection().toString())inp.focus({preventScroll:true})});
+['help','about','services','work','process','contact','neofetch','theme','hack','fortune','pet','history','sound'].forEach(function(c){var b=document.createElement('button');b.textContent=c;b.onclick=function(){if(!busy)run(c)};$('chips').appendChild(b)});
+// matrix rain
+function rain(){var cv=$('mx'),x=cv.getContext('2d');cv.width=cv.clientWidth;cv.height=cv.clientHeight;var cols=Math.floor(cv.width/16),dr=[];for(var i=0;i<cols;i++)dr[i]=Math.random()*-40;cv.classList.add('on');var t0=performance.now();
+ (function f(n){x.fillStyle='rgba(0,0,0,.08)';x.fillRect(0,0,cv.width,cv.height);x.fillStyle=getComputedStyle(document.documentElement).getPropertyValue('--fg');x.font='16px VT323,monospace';
+  for(var i=0;i<cols;i++){x.fillText(String.fromCharCode(0xFF66+Math.random()*50|0),i*16,dr[i]*16);if(dr[i]*16>cv.height&&Math.random()>.975)dr[i]=0;dr[i]++}
+  if(n-t0<5000)requestAnimationFrame(f);else{cv.classList.remove('on');setTimeout(function(){x.clearRect(0,0,cv.width,cv.height)},500)}})(t0)}
+// matrix loading screen
+function loader(){return new Promise(function(res){var ld=$('ld'),cv=$('lr'),x=cv.getContext('2d'),w=$('lw'),pc=$('lp'),T='DESIGNED TO EXIST',G='01ABCDEFXZ<>/|{}[]$#%&*+=',fs=16,dr=[],t0=performance.now(),fg=getComputedStyle(document.documentElement).getPropertyValue('--fg'),hi=getComputedStyle(document.documentElement).getPropertyValue('--hi');
+ cv.width=cv.clientWidth;cv.height=cv.clientHeight;var cols=Math.ceil(cv.width/fs);for(var i=0;i<cols;i++)dr[i]=Math.random()*-30;
+ (function f(n){var k=Math.min(1,(n-t0)/3000);x.fillStyle='rgba(0,0,0,.1)';x.fillRect(0,0,cv.width,cv.height);x.font=fs+'px VT323,monospace';
+  for(var i=0;i<cols;i++){var y=dr[i]*fs;x.fillStyle=fg;x.fillText(G[Math.random()*G.length|0],i*fs,y);if(y>0&&y<cv.height){x.fillStyle=hi;x.fillText(G[Math.random()*G.length|0],i*fs,y)}if(y>cv.height&&Math.random()>.96)dr[i]=0;dr[i]+=.7}
+  var r=Math.floor(k*T.length*1.1),s='';for(var j=0;j<T.length;j++)s+=T[j]===' '?' ':(j<r?T[j]:G[Math.random()*G.length|0]);w.textContent=s;pc.textContent='LOADING '+Math.round(k*100)+'%';
+  if(k<1)requestAnimationFrame(f);else{w.textContent=T;pc.textContent='ACCESS GRANTED';setTimeout(function(){ld.classList.add('out');setTimeout(function(){ld.remove();res()},800)},650)}})(t0)})}
+// boot
+(async function(){
+ busy=true;await loader();var L=function(t,ms){var d=document.createElement('div');d.innerHTML=t;out.appendChild(d);scr();return sleep(ms||90)};
+ await L('DTE-OS BIOS v3.0  (c) 2026 Designed to Exist',200);
+ var m=document.createElement('div');out.appendChild(m);for(var k=0;k<=64;k+=8){m.textContent='Memory test: '+(k*1024)+'K';await sleep(45)}m.textContent+=' OK';
+ await L('Detecting display .......... phosphor');await L('Mounting /portfolio .......... <span class="h">[ OK ]</span>');await L('Loading animated websites ... <span class="h">[ OK ]</span>');await L('Warming tubes ............... <span class="h">[ OK ]</span>',350);
+ await L('<span class="h">'+ART+'</span>',60);
+ await say(['Welcome to <span class="inv"> DESIGNED TO EXIST </span>  portfolio terminal.','Websites and GitHub profiles with a pulse. Type a command and poke around.','','Type '+$c('help')+' to begin, or tap a button below.',''],14)})();
+})();
+</script>
+</body>
+</html>
